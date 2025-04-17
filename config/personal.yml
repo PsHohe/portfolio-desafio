@@ -1,0 +1,74 @@
+ascii-art:
+  text: "PsHohe"
+  font: "doom"
+profile:
+  name: "Sandrino Escobar"
+  role: "Desarrollador Fullstack"
+  location: "Concepción, Chile"
+  bio: "Psicólogo convertido en desarrollador. Fullstack, con enfoque fuerte en el backend. Apasionado por la tecnología, la programación y la IA."
+  photo: "/images/photo.jpg"
+
+welcome:
+  greeting: "¡Bienvenido a mi portfolio!"
+  message: "¡Hola! Soy Sandrino Escobar, psicólogo y desarrollador de software. Te invito a explorar mis proyectos y habilidades."
+  motd: "Elige una de las siguientes opciones para conocer más:"
+
+contact:
+  email: "sescobars@gmail.com"
+  phone: "+56 9 8136 7932"
+
+social:
+  github: "https://github.com/PsHohe"
+  linkedin: "https://www.linkedin.com/in/sandrino-escobar-solar-895b6225"
+  twitter: null
+
+skills:
+  languages:
+    - name: "JavaScript/TypeScript"
+      level: "90%"
+    - name: "PHP"
+      level: "85%"
+    - name: "Dart"
+      level: "85%"
+    - name: "Python"
+      level: "70%"
+
+  frameworks:
+    - name: "Node.js"
+      level: "90%"
+    - name: "React"
+      level: "90%"
+    - name: "Flutter"
+      level: "85%"
+    - name: "Langchain"
+      level: "70%"
+
+experience:
+  - period: "2024-Presente"
+    role: "Desarrollador y gestor de proyectos"
+    company: "Sala Conectada"
+    description:
+      - "Desarrollo de aplicaciones móviles y web"
+      - "Implementación de soluciones de IA"
+      - "Gestión de equipos y proyectos"
+
+  - period: "2019-2023"
+    role: "Desarrollador Freelance"
+    company: ""
+    description:
+      - "Desarrollo de aplicaciones web y de escritorio"
+      - "Uso de diversos frameworks y bibliotecas"
+      - "Soluciones personalizadas para clientes"
+
+education:
+  - period: "2025-presente"
+    degree: "Ingeniería Informática (estudiando)"
+    institution: "Universidad Andrés Bello"
+
+  - period: "2024-2025"
+    degree: "Bootcamp de Desarrollo Backend en Node.js"
+    institution: "DesafíoLatam"
+
+  - period: "2004-2009"
+    degree: "Psicología"
+    institution: "Universidad de Concepción"

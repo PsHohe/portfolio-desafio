@@ -1,0 +1,47 @@
+---
+interface Props {
+  prompt?: string;
+  command?: string;
+  output?: string;
+  ommitHeader?: boolean;
+}
+
+const { prompt = "user@portfolio", command, output, ommitHeader } = Astro.props;
+---
+
+<div class="command-line">
+  {!ommitHeader && (
+    <div class="command">
+      <span class="prompt">{prompt}:~$</span>
+      <span class="cmd-text">{command}</span>
+    </div>
+  )}
+  {output && <div class="output">{output}</div>}
+</div>
+
+<style>
+  .command-line {
+    margin-bottom: 1rem;
+  }
+
+  .command {
+    font-family: var(--font-mono);
+    margin-bottom: 0.5rem;
+  }
+
+  .prompt {
+    color: var(--terminal-prompt);
+  }
+
+  .cmd-text {
+    color: var(--terminal-command);
+    margin-left: 0.5rem;
+  }
+
+  .output {
+    color: var(--terminal-output);
+    white-space: pre-wrap;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+</style>

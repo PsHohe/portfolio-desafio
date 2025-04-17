@@ -1,0 +1,57 @@
+---
+import TerminalSequence from './TerminalSequence';
+
+interface Command {
+  command: string;
+  output: string;
+}
+
+interface Props {
+  commands: Command[];
+  prompt?: string;
+}
+
+const { commands, prompt = "user@portfolio" } = Astro.props;
+---
+
+<TerminalSequence
+  commands={commands}
+  prompt={prompt}
+  client:load
+/>
+
+<style>
+  /* These styles will be applied to the container */
+  :global(.command-line) {
+    margin-bottom: 1rem;
+  }
+
+  :global(.command-line-placeholder) {
+    display: none; /* Hide placeholders to not take up space */
+  }
+
+  :global(.command) {
+    font-family: var(--font-mono);
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.prompt) {
+    color: var(--terminal-prompt);
+  }
+
+  :global(.cmd-text) {
+    color: var(--terminal-command);
+    margin-left: 0.5rem;
+  }
+
+  :global(.output) {
+    color: var(--terminal-output);
+    white-space: pre-wrap;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  :global(.terminal-sequence) {
+    min-height: 200px; /* Ensure there's enough space for the animation */
+  }
+</style>

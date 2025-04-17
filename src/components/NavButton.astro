@@ -1,0 +1,10 @@
+---
+interface Props {
+  href: string;
+  command: string;
+}
+
+const { href, command } = Astro.props;
+---
+
+<a href={href} class="nav-button">[{command}]</a>

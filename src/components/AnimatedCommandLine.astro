@@ -1,0 +1,45 @@
+---
+import CommandLineWithTyping from './CommandLineWithTyping';
+
+interface Props {
+  prompt?: string;
+  command?: string;
+  output?: string;
+}
+
+const { prompt = "user@portfolio", command, output } = Astro.props;
+---
+
+<CommandLineWithTyping
+  prompt={prompt}
+  command={command}
+  output={output}
+  client:visible
+/>
+
+<style>
+  :global(.command-line) {
+    margin-bottom: 1rem;
+  }
+
+  :global(.command) {
+    font-family: var(--font-mono);
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.prompt) {
+    color: var(--terminal-prompt);
+  }
+
+  :global(.cmd-text) {
+    color: var(--terminal-command);
+    margin-left: 0.5rem;
+  }
+
+  :global(.output) {
+    color: var(--terminal-output);
+    white-space: pre-wrap;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+</style>

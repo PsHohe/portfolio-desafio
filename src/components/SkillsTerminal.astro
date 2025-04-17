@@ -1,0 +1,90 @@
+---
+import AnimatedSkillsSequence from './AnimatedSkillsSequence.jsx';
+
+interface Skill {
+  name: string;
+  level: string;
+}
+
+interface SkillSection {
+  command: string;
+  skills: Skill[];
+}
+
+interface Props {
+  skillSections: SkillSection[];
+  onComplete?: () => void;
+}
+
+const { skillSections, onComplete } = Astro.props;
+---
+
+<AnimatedSkillsSequence
+  skillSections={skillSections}
+  onComplete={onComplete}
+  client:load
+/>
+
+<style>
+  :global(.skill-section) {
+    margin-bottom: 2rem;
+  }
+
+  :global(.skill-section-placeholder) {
+    display: none; /* Hide placeholders to not take up space */
+  }
+
+  :global(.skill-bars) {
+    margin-left: 1rem;
+  }
+
+  :global(.skill) {
+    margin-bottom: 0.8rem;
+  }
+
+  :global(.skill-name) {
+    font-family: var(--font-mono);
+    color: var(--terminal-text);
+  }
+
+  :global(.skill-cli-bar) {
+    font-family: var(--font-mono);
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  :global(.cli-bar-wrapper) {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  :global(.cli-bar-bracket) {
+    color: var(--terminal-text);
+  }
+
+  :global(.cli-bar-filled) {
+    color: var(--terminal-green);
+    visibility: hidden;
+  }
+
+  :global(.cli-bar-empty) {
+    color: #444;
+    opacity: 0;
+  }
+
+  :global(.cli-bar-percentage) {
+    color: var(--terminal-text);
+    margin-left: 0.5rem;
+  }
+
+  @keyframes typeCharacters {
+    from { visibility: hidden; }
+    to { visibility: visible; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>

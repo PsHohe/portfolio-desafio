@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavButtonWithAnimation from '../components/NavButtonWithAnimation.astro';
+import CommandLine from '../components/CommandLine.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CommandInput from '../components/CommandInput';
+import NavButtonsContainer from '../components/NavButtonsContainer';
+
+// Define Project interface to match the YAML structure
+interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+  github: string;
+  demo: string | null;
+}
+
+// Import projects from YAML file
+import projects from '../../config/projects.yml';
+---
+
+<Layout title="Proyectos | Sandrino Escobar">
+  <h2 class="section-title">~/sections/proyectos</h2>
+
+  <CommandLine
+    command="ls -la proyectos/"
+    output=`-rw-r--r--  1 user  group  4096 Apr 10 19:35 api-restful.json
+-rw-r--r--  1 user  group  4096 Apr 10 19:35 app-gestion.json
+-rw-r--r--  1 user  group  4096 Apr 10 19:35 microservicios.json`
+  />
+
+  <div class="projects-container">
+    {projects.map((project: Project) => (
+      <ProjectCard
+        title={project.title}
+        description={project.description}
+        technologies={project.technologies}
+        github={project.github}
+        demo={project.demo || undefined}
+      />
+    ))}
+  </div>
+
+  <NavButtonsContainer client:load>
+    <NavButtonWithAnimation href="/" command="cd .." />
+    <NavButtonWithAnimation href="/acerca" command="cd ../acerca" />
+    <NavButtonWithAnimation href="/contacto" command="cd ../contacto" />
+  </NavButtonsContainer>
+
+  <div class="command-input-wrapper">
+    <CommandInput
+      availableCommands={[
+        { command: "cd ..", href: "/" },
+        { command: "cd ../acerca", href: "/acerca" },
+        { command: "cd ../contacto", href: "/contacto" }
+      ]}
+      client:load
+    />
+  </div>
+</Layout>
+
+<style>
+  .section-title {
+    color: var(--terminal-green);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-mono);
+  }
+
+  .projects-container {
+    margin: 2rem 0;
+  }
+
+  .navigation {
+    margin-top: 2rem;
+  }
+</style>

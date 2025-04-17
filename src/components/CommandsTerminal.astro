@@ -1,0 +1,52 @@
+---
+import CommandSequence from './CommandSequence';
+
+interface Command {
+  command: string;
+  output: string;
+}
+
+interface Props {
+  commands: Command[];
+  onComplete?: () => void;
+}
+
+const { commands, onComplete } = Astro.props;
+---
+
+<CommandSequence
+  commands={commands}
+  onComplete={onComplete}
+  client:load
+/>
+
+<style>
+  :global(.command-line) {
+    margin-bottom: 1rem;
+  }
+
+  :global(.command-line-placeholder) {
+    display: none;
+  }
+
+  :global(.command) {
+    font-family: var(--font-mono);
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.prompt) {
+    color: var(--terminal-prompt);
+  }
+
+  :global(.cmd-text) {
+    color: var(--terminal-command);
+    margin-left: 0.5rem;
+  }
+
+  :global(.output) {
+    color: var(--terminal-output);
+    white-space: pre-wrap;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+</style>

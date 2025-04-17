@@ -1,0 +1,68 @@
+/* Command Input Styles */
+.command-input-container {
+  margin-top: 1rem;
+}
+
+.command-input {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  margin-bottom: 0.5rem;
+}
+
+.cmd-input {
+  background-color: transparent;
+  border: none;
+  color: var(--terminal-command);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  padding: 0.25rem 0;
+  width: 100%;
+  outline: none;
+}
+
+.available-commands {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+.hint {
+  color: #666;
+}
+
+.available-command {
+  color: var(--terminal-cyan);
+}
+
+.command-line {
+  margin-bottom: 1rem;
+}
+
+.command {
+  font-family: var(--font-mono);
+  margin-bottom: 0.5rem;
+}
+
+.prompt {
+  color: var(--terminal-prompt);
+}
+
+.cmd-text {
+  color: var(--terminal-command);
+  margin-left: 0.5rem;
+}
+
+.output {
+  color: var(--terminal-output);
+  white-space: pre-wrap;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.command-input-wrapper {
+  margin-top: 2rem;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+}

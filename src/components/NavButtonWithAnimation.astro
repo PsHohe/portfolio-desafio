@@ -1,0 +1,12 @@
+---
+import NavButtonInteractive from './NavButtonInteractive';
+
+interface Props {
+  href: string;
+  command: string;
+}
+
+const { href, command } = Astro.props;
+---
+
+<NavButtonInteractive href={href} command={command} client:load />

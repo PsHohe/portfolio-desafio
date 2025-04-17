@@ -1,0 +1,183 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavButtonWithAnimation from '../components/NavButtonWithAnimation.astro';
+import CommandInput from '../components/CommandInput';
+import SkillsTerminal from '../components/SkillsTerminal.astro';
+import AnimatedPhoto from '../components/AnimatedPhoto';
+import CommandsTerminal from '../components/CommandsTerminal.astro';
+import NavButtonsContainer from '../components/NavButtonsContainer';
+
+// Import personal data from YAML file
+import personalData from '../../config/personal.yml';
+
+// Type assertion for better type safety
+const { profile, skills, experience, education } = personalData as PersonalData;
+---
+
+<Layout title="Acerca de | Sandrino Escobar">
+  <h2 class="section-title">~/sections/acerca</h2>
+
+  <CommandsTerminal
+    commands={[
+      {
+        command: "cat perfil.json",
+        output: `{\n  "nombre": "${profile.name}",\n  "rol": "${profile.role}",\n  "ubicacion": "${profile.location}",\n  "bio": "${profile.bio}"\n}`
+      },
+      {
+        command: "cat foto/photo.jpg | imagen",
+        output: "Mostrando imagen..."
+      }
+    ]}
+  />
+
+  <AnimatedPhoto photoPath={profile.photo} client:load />
+
+  <!-- <CommandLine
+    command="ls -la habilidades/"
+    output=`drwxr-xr-x  2 user  group  4096 Apr 10 19:35 lenguajes
+drwxr-xr-x  2 user  group  4096 Apr 10 19:35 frameworks
+drwxr-xr-x  2 user  group  4096 Apr 10 19:35 herramientas
+drwxr-xr-x  2 user  group  4096 Apr 10 19:35 bases_de_datos`
+  /> -->
+
+  <SkillsTerminal
+    skillSections={[
+      {
+        command: "cat habilidades/lenguajes.txt",
+        skills: skills.languages
+      },
+      {
+        command: "cat habilidades/frameworks.txt",
+        skills: skills.frameworks
+      }
+    ]}
+  />
+
+  <CommandsTerminal
+    commands={[
+      {
+        command: "cat experiencia.log",
+        output: experience.map(exp => {
+          const company = exp.company ? ` - ${exp.company}` : '';
+          return `[${exp.period}] ${exp.role}${company}\n${exp.description.map(item => `- ${item}`).join('\n')}`;
+        }).join('\n\n')
+      },
+      {
+        command: "cat educacion.txt",
+        output: education.map(edu => {
+          return `[${edu.period}] ${edu.degree} - ${edu.institution}`;
+        }).join('\n\n')
+      }
+    ]}
+  />
+
+  <NavButtonsContainer client:load>
+    <NavButtonWithAnimation href="/" command="cd .." />
+    <NavButtonWithAnimation href="/proyectos" command="cd ../proyectos" />
+    <NavButtonWithAnimation href="/contacto" command="cd ../contacto" />
+  </NavButtonsContainer>
+
+  <div class="command-input-wrapper">
+    <CommandInput
+      availableCommands={[
+        { command: "cd ..", href: "/" },
+        { command: "cd ../proyectos", href: "/proyectos" },
+        { command: "cd ../contacto", href: "/contacto" }
+      ]}
+      client:load
+    />
+  </div>
+</Layout>
+
+<style>
+  .section-title {
+    color: var(--terminal-green);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-mono);
+  }
+
+  .skill-section {
+    margin-bottom: 2rem;
+  }
+
+  .skill-bars {
+    margin-left: 1rem;
+  }
+
+  .skill {
+    margin-bottom: 0.8rem;
+  }
+
+  .skill-name {
+    margin-bottom: 0.3rem;
+  }
+
+  .skill-bar {
+    height: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .skill-level {
+    height: 100%;
+    background-color: var(--terminal-green);
+  }
+
+  .navigation {
+    margin-top: 2rem;
+  }
+
+  /* Photo container styles */
+  :global(.photo-container) {
+    margin: 1.5rem 0;
+    border: 1px solid #444;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #1a1a1a;
+  }
+
+  :global(.photo-wrapper) {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  :global(.profile-photo) {
+    max-width: 300px;
+    height: auto;
+    border: 2px solid #444;
+    border-radius: 5px;
+  }
+
+  /* Photo window header styles */
+  :global(.photo-container .terminal-header) {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #444;
+    padding: 0.5rem;
+    background-color: #2a2a2a;
+  }
+
+  :global(.photo-container .terminal-title) {
+    font-weight: bold;
+    color: var(--terminal-text);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+  }
+
+  :global(.terminal-controls) {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  :global(.terminal-control) {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  :global(.terminal-control.close) { background-color: #ff5f56; }
+  :global(.terminal-control.minimize) { background-color: #ffbd2e; }
+  :global(.terminal-control.maximize) { background-color: #27c93f; }
+</style>

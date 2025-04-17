@@ -1,47 +1,130 @@
-# Astro Starter Kit: Minimal
+# Portafolio de Sandrino Escobar
 
-```sh
-pnpm create astro@latest -- --template minimal
+Este proyecto es un portafolio personal creado con Astro, en el estilo de un terminal de línea de comandos (CLI). El diseño simula una interfaz de terminal con animaciones de escritura, barras de habilidades estilo CLI, y navegación interactiva que emula comandos de consola.
+
+## 🚀 Tecnologías Utilizadas
+
+- [Astro](https://astro.build/) - Framework web para sitios estáticos
+- [React](https://reactjs.org/) - Para componentes interactivos
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS para estilos
+
+## 📋 Requisitos Previos
+
+- [Node.js](https://nodejs.org/) (versión 18 o superior)
+- [npm](https://www.npmjs.com/) o [pnpm](https://pnpm.io/) (recomendado)
+
+## 🛠️ Instalación
+
+```bash
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
+npm run dev
+
+# Construir para producción
+npm run build
+
+# Ver lista de fuentes ASCII disponibles
+npm run list-fonts
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/portfolio-desafio.git
+   cd portfolio-desafio
+   ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+2. Instala las dependencias:
+   ```bash
+   # Con npm
+   npm install
 
-## 🚀 Project Structure
+   # O con pnpm (recomendado)
+   pnpm install
+   ```
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🖥️ Ejecución del Proyecto
 
-```text
+### Modo Desarrollo
+
+Para ejecutar el proyecto en modo desarrollo con hot reload:
+
+```bash
+# Con npm
+npm run dev
+
+# O con pnpm
+pnpm dev
+```
+
+El sitio estará disponible en `http://localhost:4321` (asumiendo que el puerto no esté en uso)
+
+### Compilación para Producción
+
+Para construir el proyecto para producción:
+
+```bash
+# Con npm
+npm run build
+
+# O con pnpm
+pnpm build
+```
+
+Los archivos compilados se generarán en el directorio `dist/`.
+
+### Vista Previa de Producción
+
+Para previsualizar la versión de producción localmente:
+
+```bash
+# Con npm
+npm run preview
+
+# O con pnpm
+pnpm preview
+```
+
+## 📁 Estructura del Proyecto
+
+```
 /
-├── public/
+├── config/            # Archivos de configuración
+│   ├── projects.yml   # Datos de proyectos en formato YAML
+│   └── personal.yml   # Datos personales y configuración de ASCII art en formato YAML
+├── public/            # Archivos estáticos
+│   └── images/        # Imágenes del proyecto
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/    # Componentes Astro y React
+│   ├── layouts/       # Plantillas de página
+│   ├── pages/         # Páginas del sitio
+│   └── styles/        # Estilos CSS
+└── package.json       # Dependencias y scripts
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🎨 Características
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- Diseño inspirado en terminal CLI
+- Animaciones de escritura tipo consola
+- Navegación interactiva con comandos
+- Interfaz responsiva
+- Datos de proyectos y personales fácilmente editables en archivos YAML
+- ASCII art generado dinámicamente en tiempo de compilación
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Configuración de ASCII Art
 
-## 🧞 Commands
+El ASCII art del título se genera dinámicamente durante la compilación utilizando la biblioteca `figlet`. Puedes personalizar el texto y la fuente en el archivo `config/personal.yml`:
 
-All commands are run from the root of the project, from a terminal:
+```yaml
+ascii-art:
+  text: "Tu Texto"
+  font: "doom"
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+Para ver todas las fuentes disponibles, ejecuta:
 
-## 👀 Want to learn more?
+```bash
+npm run list-fonts
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

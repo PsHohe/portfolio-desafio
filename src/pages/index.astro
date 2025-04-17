@@ -1,16 +1,58 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import AsciiTitle from '../components/AsciiTitle.astro';
+import NavButtonWithAnimation from '../components/NavButtonWithAnimation.astro';
+import TerminalConsole from '../components/TerminalConsole.astro';
+import CommandInput from '../components/CommandInput';
+import NavButtonsContainer from '../components/NavButtonsContainer';
 
+// Import personal data from YAML file
+import personalData from '../../config/personal.yml';
+
+// Type assertion for better type safety
+const { profile, welcome } = personalData as PersonalData;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title={`${profile.name} | ${profile.role}`}>
+  <AsciiTitle />
+
+  <TerminalConsole
+    commands={[
+      {
+        command: `echo '${welcome.greeting}'`,
+        output: welcome.message
+      },
+      {
+        command: "ls -la",
+        output: "drwxr-xr-x  2 user  group  4096 Apr 10 19:35 acerca\ndrwxr-xr-x  2 user  group  4096 Apr 10 19:35 proyectos\ndrwxr-xr-x  2 user  group  4096 Apr 10 19:35 contacto"
+      },
+      {
+        command: "cat /etc/motd",
+        output: welcome.motd
+      }
+    ]}
+  />
+
+  <NavButtonsContainer client:load>
+    <NavButtonWithAnimation href="/acerca" command="cd acerca" />
+    <NavButtonWithAnimation href="/proyectos" command="cd proyectos" />
+    <NavButtonWithAnimation href="/contacto" command="cd contacto" />
+  </NavButtonsContainer>
+
+  <div class="command-input-wrapper">
+    <CommandInput
+      availableCommands={[
+        { command: "cd acerca", href: "/acerca" },
+        { command: "cd proyectos", href: "/proyectos" },
+        { command: "cd contacto", href: "/contacto" }
+      ]}
+      client:load
+    />
+  </div>
+</Layout>
+
+<style>
+  .navigation {
+    margin: 1.5rem 0;
+  }
+</style>

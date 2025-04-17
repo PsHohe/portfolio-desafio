@@ -1,0 +1,37 @@
+- title: "Portfolio"
+  description: "El source code de este mismo portfolio. Eres libre de usarlo, si te gustó."
+  technologies: 
+    - Astro
+    - React
+    - Tailwind CSS
+  github: "https://github.com/yourusername/portfolio"
+  demo: "https://portfolio.pssandrinoescobar.cl"
+
+- title: "API RESTful"
+  description: "API RESTful para gestión de usuarios y autenticación."
+  technologies:
+    - Node.js
+    - Express
+    - MongoDB
+  github: "https://github.com/yourusername/api-project"
+  demo: "https://api-demo.example.com"
+
+- title: "Aplicación de Gestión"
+  description: "Sistema de gestión de inventario con panel de administración y reportes."
+  technologies:
+    - React
+    - Node.js
+    - PostgreSQL
+    - Docker
+  github: "https://github.com/yourusername/inventory-app"
+  demo: "https://inventory-demo.example.com"
+
+- title: "Microservicios"
+  description: "Arquitectura de microservicios para procesamiento de pagos y gestión de usuarios."
+  technologies:
+    - Python
+    - FastAPI
+    - RabbitMQ
+    - Redis
+  github: "https://github.com/yourusername/microservices"
+  demo: null

@@ -1,0 +1,26 @@
+---
+// Import our utility function for generating ASCII art
+import { generateAsciiArt } from '../utils/asciiArtUtils';
+import personalData from '../../config/personal.yml';
+
+// Get the text and font to use from the YAML file
+const textToConvert = personalData['ascii-art'] || 'Sandrino';
+
+// Check if the user has specified a font in the YAML file
+// The format could be either a string or an object with text and font properties
+let fontToUse = 'doom'; // Default font
+let textToUse = textToConvert;
+
+// If the ascii-art value is an object with text and font properties
+if (typeof textToConvert === 'object' && textToConvert !== null) {
+  textToUse = textToConvert.text || 'Sandrino';
+  fontToUse = textToConvert.font || 'doom';
+}
+
+// Generate the ASCII art at build time
+const asciiArt = await generateAsciiArt(textToUse, fontToUse);
+---
+
+<div class="ascii-art">
+  <pre set:html={asciiArt} />
+</div>
