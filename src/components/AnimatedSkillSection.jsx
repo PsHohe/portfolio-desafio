@@ -50,7 +50,7 @@ export default function AnimatedSkillSection({ command, skills, isActive, onComp
             return (
               <div className="skill" key={index}>
                 <div className="skill-cli-bar">
-                  <span className="skill-name">{skill.name}: </span>
+                  <span className="skill-name">{skill.name.padEnd(10, '\u00A0')}: </span>
                   <span className="cli-bar-wrapper">
                     <span className="cli-bar-bracket">[</span>
                     <span

@@ -5,15 +5,17 @@ interface Props {
   technologies: string[];
   github?: string;
   demo?: string;
+  appstore?: string;
+  playstore?: string;
 }
 
-const { title, description, technologies, github, demo } = Astro.props;
+const { title, description, technologies, github, demo, appstore, playstore } = Astro.props;
 ---
 
 <div class="project-card">
   <div class="project-header">
     <span class="prompt">user@portfolio:~/projects$</span>
-    <span class="cmd-text">cat {title}.md</span>
+    <span class="cmd-text">cat {title.toLowerCase().replaceAll(' ', '-')}.md</span>
   </div>
 
   <div class="project-content">
@@ -30,12 +32,22 @@ const { title, description, technologies, github, demo } = Astro.props;
     <div class="project-links">
       {github && (
         <a href={github} target="_blank" rel="noopener noreferrer" class="project-link">
-          [GitHub Repository]
+          [Repositorio en GitHub]
         </a>
       )}
       {demo && (
         <a href={demo} target="_blank" rel="noopener noreferrer" class="project-link">
           [Live Demo]
+        </a>
+      )}
+      {appstore && (
+        <a href={appstore} target="_blank" rel="noopener noreferrer" class="project-link app-store-link">
+          <span class="store-icon">🍎</span> [App Store]
+        </a>
+      )}
+      {playstore && (
+        <a href={playstore} target="_blank" rel="noopener noreferrer" class="project-link play-store-link">
+          <span class="store-icon">🤖</span> [Play Store]
         </a>
       )}
     </div>
@@ -101,7 +113,9 @@ const { title, description, technologies, github, demo } = Astro.props;
 
   .project-links {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
   }
 
   .project-link {
@@ -117,5 +131,32 @@ const { title, description, technologies, github, demo } = Astro.props;
     background-color: #444;
     border-color: var(--terminal-cyan);
     color: var(--terminal-cyan);
+  }
+
+  .app-store-link {
+    border-color: #0071e3;
+    background-color: rgba(0, 113, 227, 0.1);
+  }
+
+  .app-store-link:hover {
+    background-color: rgba(0, 113, 227, 0.2);
+    border-color: #0071e3;
+    color: #ffffff;
+  }
+
+  .play-store-link {
+    border-color: #01875f;
+    background-color: rgba(1, 135, 95, 0.1);
+  }
+
+  .play-store-link:hover {
+    background-color: rgba(1, 135, 95, 0.2);
+    border-color: #01875f;
+    color: #ffffff;
+  }
+
+  .store-icon {
+    font-size: 0.9rem;
+    margin-right: 0.2rem;
   }
 </style>

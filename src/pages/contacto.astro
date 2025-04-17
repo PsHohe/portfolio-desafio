@@ -5,6 +5,7 @@ import CommandLine from '../components/CommandLine.astro';
 import CommandInput from '../components/CommandInput';
 import NavButtonsContainer from '../components/NavButtonsContainer';
 import ClickableEmail from '../components/ClickableEmail';
+import ContactForm from '../components/ContactForm';
 
 // Import personal data from YAML file
 import personalData from '../../config/personal.yml';
@@ -42,24 +43,7 @@ linkedin = ${social.linkedin}`}
   <div class="contact-section">
     <h3 class="contact-title">$ echo "Envíame un mensaje"</h3>
 
-    <div class="contact-form">
-      <div class="form-group">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" />
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" />
-      </div>
-
-      <div class="form-group">
-        <label for="message">Mensaje:</label>
-        <textarea id="message" name="message" class="form-textarea" placeholder="Escribe tu mensaje aquí..."></textarea>
-      </div>
-
-      <button type="submit" class="submit-btn">Enviar mensaje</button>
-    </div>
+    <ContactForm client:load />
   </div>
 
   <CommandLine
@@ -137,20 +121,21 @@ linkedin = ${social.linkedin}`}
     font-weight: normal;
   }
 
-  .contact-form {
+  /* Styles for the contact form component */
+  :global(.contact-form) {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
-  .form-group {
+  :global(.form-group) {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .form-input,
-  .form-textarea {
+  :global(.form-input),
+  :global(.form-textarea) {
     background-color: #2a2a2a;
     border: 1px solid #444;
     border-radius: 3px;
@@ -159,12 +144,12 @@ linkedin = ${social.linkedin}`}
     font-family: var(--font-mono);
   }
 
-  .form-textarea {
+  :global(.form-textarea) {
     min-height: 120px;
     resize: vertical;
   }
 
-  .submit-btn {
+  :global(.submit-btn) {
     background-color: #333;
     color: var(--terminal-cyan);
     border: 1px solid #555;
@@ -176,10 +161,64 @@ linkedin = ${social.linkedin}`}
     margin-top: 0.5rem;
   }
 
-  .submit-btn:hover {
+  :global(.submit-btn:hover) {
     background-color: #444;
     border-color: var(--terminal-cyan);
     color: var(--terminal-yellow);
+  }
+
+  :global(.submit-btn:disabled) {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  :global(.error-message) {
+    color: var(--terminal-red, #ff6b6b);
+    background-color: rgba(255, 107, 107, 0.1);
+    border: 1px solid var(--terminal-red, #ff6b6b);
+    padding: 0.5rem;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.success-message) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  :global(.terminal-output) {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 3px;
+    padding: 1rem;
+    font-family: var(--font-mono);
+    color: var(--terminal-text);
+  }
+
+  :global(.success-title) {
+    color: var(--terminal-green);
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+  }
+
+  :global(.success-content) {
+    margin-left: 1rem;
+  }
+
+  :global(.command-prompt) {
+    color: var(--terminal-green);
+    margin-top: 1rem;
+  }
+
+  :global(.cursor) {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
   }
 
   .social-links {

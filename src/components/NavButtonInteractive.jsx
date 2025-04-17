@@ -9,11 +9,14 @@ export default function NavButtonInteractive({ href, command }) {
     // Scroll to top of the page
     scrollToTop();
 
-    if (window.simulateCommand) {
-      window.simulateCommand(command);
-    } else {
-      navigate(href);
-    }
+    // Use setTimeout to ensure scroll completes before any focus changes
+    setTimeout(() => {
+      if (window.simulateCommand) {
+        window.simulateCommand(command);
+      } else {
+        navigate(href);
+      }
+    }, 100);
   };
 
   const [isHovered, setIsHovered] = useState(false);

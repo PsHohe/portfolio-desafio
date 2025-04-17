@@ -5,33 +5,22 @@
     - React
     - Tailwind CSS
   github: "https://github.com/yourusername/portfolio"
-  demo: "https://portfolio.pssandrinoescobar.cl"
+  demo: "https://github.com/PsHohe/portfolio-desafio"
 
-- title: "API RESTful"
-  description: "API RESTful para gestión de usuarios y autenticación."
+- title: "Pipeline en Jenkins"
+  description: "Ejemplo de uso de Jenkins para realize un pipeline de integración y despliegue."
   technologies:
-    - Node.js
-    - Express
-    - MongoDB
-  github: "https://github.com/yourusername/api-project"
-  demo: "https://api-demo.example.com"
-
-- title: "Aplicación de Gestión"
-  description: "Sistema de gestión de inventario con panel de administración y reportes."
-  technologies:
-    - React
-    - Node.js
-    - PostgreSQL
+    - Jenkins
     - Docker
-  github: "https://github.com/yourusername/inventory-app"
-  demo: "https://inventory-demo.example.com"
+  github: "https://github.com/PsHohe/pipeline-jenkins"
+  demo: null
 
-- title: "Microservicios"
-  description: "Arquitectura de microservicios para procesamiento de pagos y gestión de usuarios."
+- title: "App móvil de Certificados"
+  description: "Realizada para Traumafire Capacitaciones, aplicación móvil con animaciones y presentación de credenciales virtuales."
   technologies:
-    - Python
-    - FastAPI
-    - RabbitMQ
-    - Redis
-  github: "https://github.com/yourusername/microservices"
+    - Flutter
+    - Postgresql
+  appstore: "https://apps.apple.com/cl/app/6743162948"
+  playstore: "https://play.google.com/store/apps/details?id=cl.salaconectada.traumafire"
+  github: null
   demo: null

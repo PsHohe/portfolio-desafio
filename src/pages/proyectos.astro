@@ -11,15 +11,22 @@ interface Project {
   title: string;
   description: string;
   technologies: string[];
-  github: string;
+  github: string | null;
   demo: string | null;
+  appstore?: string | null;
+  playstore?: string | null;
 }
 
 // Import projects from YAML file
 import projects from '../../config/projects.yml';
+
+// Import personal data from YAML file
+import personalData from '../../config/personal.yml';
+
+const { profile } = personalData as PersonalData;
 ---
 
-<Layout title="Proyectos | Sandrino Escobar">
+<Layout title=`Proyectos | ${profile.name}`>
   <h2 class="section-title">~/sections/proyectos</h2>
 
   <CommandLine
@@ -35,8 +42,10 @@ import projects from '../../config/projects.yml';
         title={project.title}
         description={project.description}
         technologies={project.technologies}
-        github={project.github}
+        github={project.github || undefined}
         demo={project.demo || undefined}
+        appstore={project.appstore || undefined}
+        playstore={project.playstore || undefined}
       />
     ))}
   </div>

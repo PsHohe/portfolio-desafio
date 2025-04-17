@@ -30,10 +30,19 @@ export default function CommandInput({ availableCommands = [] }) {
     return acc;
   }, {});
 
-  // Focus the input field when the component mounts
+  // Focus the input field when the component mounts without scrolling
   useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.focus();
+      // Save current scroll position
+      const scrollPos = window.scrollY;
+
+      // Focus without scrolling
+      inputRef.current.focus({preventScroll: true});
+
+      // Restore scroll position if needed
+      if (window.scrollY !== scrollPos) {
+        window.scrollTo(0, scrollPos);
+      }
     }
   }, []);
 
@@ -49,9 +58,12 @@ export default function CommandInput({ availableCommands = [] }) {
         // Scroll to top of the page
         scrollToTop();
 
-        // Valid command entered - navigate immediately
-        navigate(commandMap[command]);
-        setInputValue('');
+        // Set a small timeout to allow the scroll to complete before navigation
+        setTimeout(() => {
+          // Valid command entered - navigate
+          navigate(commandMap[command]);
+          setInputValue('');
+        }, 300);
       }
     }
   };
@@ -70,9 +82,10 @@ export default function CommandInput({ availableCommands = [] }) {
     // Navigate to the corresponding URL after typing animation completes
     const url = commandMap[displayCommand];
     if (url) {
-      // Scroll to top of the page
+      // Scroll to top of the page and navigate
       scrollToTop();
 
+      // Navigate after a small delay to allow the scroll to complete
       setTimeout(() => {
         navigate(url);
       }, 500); // Small delay after typing completes
