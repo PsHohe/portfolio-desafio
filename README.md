@@ -2,6 +2,9 @@
 
 Este proyecto es un portafolio personal creado con Astro, en el estilo de un terminal de línea de comandos (CLI). El diseño simula una interfaz de terminal con animaciones de escritura, barras de habilidades estilo CLI, y navegación interactiva que emula comandos de consola.
 
+Este portfolio se encuentra actualmente desplegado en:
+[https://portfolio.pssandrinoescobar.cl](https://portfolio.pssandrinoescobar.cl)
+
 ## 🚀 Tecnologías Utilizadas
 
 - [Astro](https://astro.build/) - Framework web para sitios estáticos
@@ -99,7 +102,8 @@ pnpm preview
 │   ├── components/    # Componentes Astro y React
 │   ├── layouts/       # Plantillas de página
 │   ├── pages/         # Páginas del sitio
-│   └── styles/        # Estilos CSS
+│   ├── styles/        # Estilos CSS
+│   └── utils/         # Utilidades y funciones auxiliares
 └── package.json       # Dependencias y scripts
 ```
 
@@ -119,7 +123,7 @@ El ASCII art del título se genera dinámicamente durante la compilación utiliz
 ```yaml
 ascii-art:
   text: "Tu Texto"
-  font: "doom"
+  font: "Standard"
 ```
 
 Para ver todas las fuentes disponibles, ejecuta:
