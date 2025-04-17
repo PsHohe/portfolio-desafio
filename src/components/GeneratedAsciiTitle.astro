@@ -8,13 +8,13 @@ const textToConvert = personalData['ascii-art'] || 'Sandrino';
 
 // Check if the user has specified a font in the YAML file
 // The format could be either a string or an object with text and font properties
-let fontToUse = 'doom'; // Default font
+let fontToUse = 'Standard'; // Default to Standard font for better compatibility
 let textToUse = textToConvert;
 
 // If the ascii-art value is an object with text and font properties
 if (typeof textToConvert === 'object' && textToConvert !== null) {
   textToUse = textToConvert.text || 'Sandrino';
-  fontToUse = textToConvert.font || 'doom';
+  fontToUse = textToConvert.font || 'Standard';
 }
 
 // Generate the ASCII art at build time

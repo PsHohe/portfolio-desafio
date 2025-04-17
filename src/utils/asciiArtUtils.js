@@ -19,7 +19,21 @@ export async function generateAsciiArt(text, font = 'Standard') {
     return rendered;
   } catch (error) {
     console.error(`Error generating ASCII art with font ${font}:`, error);
-    // Return a fallback ASCII art if generation fails
+    
+    // If the specific font wasn't found, try with the Standard font
+    if (error.code === 'ENOENT' && font !== 'Standard') {
+      console.log(`Falling back to Standard font instead of ${font}`);
+      try {
+        const fallbackRendered = await figletPromise(text, {
+          font: 'Standard'
+        });
+        return fallbackRendered;
+      } catch (fallbackError) {
+        console.error('Error with fallback font:', fallbackError);
+      }
+    }
+    
+    // Return a hardcoded fallback ASCII art if all else fails
     return `
      _____                 _      _             
     / ____|               | |    (_)            
